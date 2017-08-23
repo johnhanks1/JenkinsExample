@@ -1,4 +1,4 @@
-node('build') {
+Stage('Build') {
   awsCodeBuild projectName: 'project',
                credentialsType: 'keys',
                awsAccessKey: AWS_ACCESS_KEY_ID,
