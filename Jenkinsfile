@@ -3,10 +3,10 @@ pipeline {
   stages {
    stage('Build') {
      steps {
-       awsCodeBuild projectName: 'JenkinsPipelineExample',
+       awsCodeBuild projectName: 'JenkinsPipelineExampleSFO',
                    credentialsId: 'pipelineExample',  
                    credentialsType: 'jenkins',
-                   region: 'us-east-1',
+                   region: 'us-west-1',
                    sourceControlType: 'jenkins'
      }
    }

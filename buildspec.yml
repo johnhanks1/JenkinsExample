@@ -3,18 +3,14 @@ version: 0.0
 containers:
   main:
     phases:
-      pre_build:
+      install:
         commands:
-          - echo 'Inside CodeBuild Source Directory'
-          - ls -altr
+          - bundle install
       during_build:
         commands:
-          - echo 'Compiling the Java Code'
-          - mvn assembly:assembly -DdescriptorId=jar-with-dependencies
+          - echo "******** Building Jekyll site ********"
+          - jekyll build
       post_build:
         commands:
-          - echo "Would deploy here"
-    artifacts:
-      type: zip
-      files:
-        - 'target/sample-app*'
+          - echo "******** Uploading to S3 ********"
+          - aws s3 sync _site/ s3://jenkinspipelineexample
